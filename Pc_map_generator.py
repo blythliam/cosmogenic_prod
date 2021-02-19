@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Created on Mon Nov 23 10:31:24 2020
 
@@ -8,7 +8,7 @@ Created on Mon Nov 23 10:31:24 2020
 #%%
 
 ####################################
-##########Functions#################
+##########_Functions################
 ####################################
 def smooth_df(df,smooth_points = 50):
     from scipy import interpolate
