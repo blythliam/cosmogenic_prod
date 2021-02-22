@@ -154,7 +154,7 @@ M= 7.8
 Er = 0.938
 glob_tot = False
 spat_ocean = False
-jasmin = False
+jasmin = True
 
 #%%
 " Setting the global varibles for magnetic moment of earth and mass of proton"
@@ -172,7 +172,7 @@ root_dir = 'C:/Users/lpb20/OneDrive - Imperial College London/Documents/Odyssey/
 if spat_ocean:
     root_dir = '//home/lpb20/cosmogenic_prod'
 if jasmin:
-    root_dir = '//home/users/lpb20'
+    root_dir = '//home/users/lpb20/cosmogenic_prod'
 
 
 
