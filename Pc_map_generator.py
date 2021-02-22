@@ -113,7 +113,7 @@ def Gen_PC(lats_points = 144, long_points = 192):
     
     E = (L0*g10 + L1 * g11  + L2 * h11) / 4 * B0**2
     
-    x0 = 399e3#((L1-g11*E) / 3*B0**2) * R0
+    x0 = -399e3#((L1-g11*E) / 3*B0**2) * R0
     y0 = 351e3#((L2-h11*E) / 3*B0**2) * R0
     z0 = 221e3
     
@@ -234,8 +234,8 @@ Y_a = pi * Sa_smooth
 #%%
 
 import glob
-no_of_months_done = len(glob.glob('C:/Users/lpb20/OneDrive - Imperial College London/Documents/Odyssey/cosmogenic_prod/Output_Files/*.txt'))
-phis = (phi_data[1] / 1000)[no_of_months_done:]
+no_of_months_done = int(len(glob.glob('C:/Users/lpb20/OneDrive - Imperial College London/Documents/Odyssey/cosmogenic_prod/Output_Files/*.txt'))/110)
+phis = (phi_data[:,1] / 1000)[no_of_months_done:]
 Pcs = Gen_PC()
 start_year = time.time()
 CO_prod = np.zeros([10, 110, 144, 192])
@@ -285,7 +285,7 @@ for year, phi in enumerate(phis):
                 column_tot[i,j] = I
     for ii in range(110):
         X = month_slice[ii,:,:]
-        np.savetxt(prod_file_path + '_' + str(year) + '_' + str(ii).zfill(3),X)          
+        np.savetxt(prod_file_path + '/' + str(year) + '_' + str(ii).zfill(3) + '.txt',X)          
 
     CO_prod[year, :,  : , : ] = month_slice
     end_year = time.time()

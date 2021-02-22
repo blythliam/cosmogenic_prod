@@ -9,10 +9,19 @@ Created on Fri Feb 19 14:11:47 2021
 
 import netCDF4 as nc
 
+#%%
+" 14C production in atmosphere "
+
+
+
+
+
 
 
 #%%
 " Loading data and converting into netCDF file format"
+
+
 
 
 df = nc.Dataset('CO_prod.nc', 'w',format = 'NETCDF4' )
