@@ -154,6 +154,7 @@ M= 7.8
 Er = 0.938
 glob_tot = False
 spat_ocean = False
+jasmin = False
 
 #%%
 " Setting the global varibles for magnetic moment of earth and mass of proton"
@@ -166,17 +167,17 @@ Er = 0.938
 #%%
 
 
+root_dir = 'C:/Users/lpb20/OneDrive - Imperial College London/Documents/Odyssey/cosmogenic_prod'
+
+if spat_ocean:
+    root_dir = '//home/lpb20/cosmogenic_prod'
+if jasmin:
+    root_dir = '//home/users/lpb20'
 
 
 
-
-
-Cproddir = 'C:/Users/lpb20/OneDrive - Imperial College London/Documents/Odyssey/cosmogenic_prod/14CProduction'
-prod_file_path= 'C:/Users/lpb20/OneDrive - Imperial College London/Documents/Odyssey/cosmogenic_prod/Output_Files'
-
-
-if spat_ocean == True:
-    Cproddir = '//home/lpb20/cosmogenic_prod/14CProduction'
+Cproddir = root_dir + '/14CProduction'
+prod_file_path= root_dir + '/Output_Files'
 
 
 
@@ -234,7 +235,7 @@ Y_a = pi * Sa_smooth
 #%%
 
 import glob
-no_of_months_done = int(len(glob.glob('C:/Users/lpb20/OneDrive - Imperial College London/Documents/Odyssey/cosmogenic_prod/Output_Files/*.txt'))/110)
+no_of_months_done = int(len(glob.glob(root_dir + '/Output_Files/*.txt'))/110)
 phis = (phi_data[:,1] / 1000)[no_of_months_done:]
 Pcs = Gen_PC()
 start_year = time.time()
