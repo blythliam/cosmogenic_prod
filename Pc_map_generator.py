@@ -134,7 +134,9 @@ def Gen_PC(lats_points = 144, long_points = 192):
     
     return Pc
     
-    
+def Int(y,x):
+    I = np.sum(np.nan_to_num(np.diff(y*x) / ((np.diff(np.log(y))/np.diff(np.log(x))) + 1),nan=0.0))
+    return I    
     
 
     
@@ -154,7 +156,7 @@ M= 7.8
 Er = 0.938
 glob_tot = False
 spat_ocean = False
-jasmin = True
+jasmin = False
 
 #%%
 " Setting the global varibles for magnetic moment of earth and mass of proton"
@@ -242,7 +244,7 @@ start_year = time.time()
 CO_prod = np.zeros([10, 110, 144, 192])
 for year, phi in enumerate(phis):
     print('----------------------------------------------------')
-    print('The code is now going to iterate through year: ', + (year))
+    print('The code is now going to iterate through year: ', + (year + (827-len(phis))))
     print('----------------------------------------------------')
     J_p = LIS(Y_p.columns, phi, 'p') 
     J_a = LIS(Y_a.columns, phi, 'a')
@@ -257,7 +259,7 @@ for year, phi in enumerate(phis):
         
         if i%2 == 0 and i>0:
             end = time.time()
-            print('There are '+ str(144 - i)+ ' left in the year '+ str(year))
+            print('There are '+ str(144 - i)+ ' left in the year '+ str((year + (827-len(phis)))))
             print('That interation took ' + str(end - start) + 'seconds')
         start = time.time()
         for j in range(192):
@@ -272,10 +274,7 @@ for year, phi in enumerate(phis):
             YpxJp_above = YpxJp[YpxJp.columns[YpxJp.columns>Ecp]]
             
             
-            def Int(y,x):
-                I = np.sum(np.nan_to_num(np.diff(y*x) / ((np.diff(np.log(y))/np.diff(np.log(x))) + 1),nan=0.0))
-                return I
-            
+           
             YpxJa_col = YpxJa_above.apply(lambda x: Int(x[x>0],YpxJa_above.columns[x>0]), axis = 1)
             YpxJp_col = YpxJp_above.apply(lambda x: Int(x[x>0],YpxJp_above.columns[x>0]), axis = 1)
             
@@ -286,7 +285,7 @@ for year, phi in enumerate(phis):
                 column_tot[i,j] = I
     for ii in range(110):
         X = month_slice[ii,:,:]
-        np.savetxt(prod_file_path + '/' + str(year) + '_' + str(ii).zfill(3) + '.txt',X)          
+        np.savetxt(prod_file_path + '/' + str(year + (827-len(phis))) + '_' + str(ii).zfill(3) + '.txt',X)          
 
     CO_prod[year, :,  : , : ] = month_slice
     end_year = time.time()

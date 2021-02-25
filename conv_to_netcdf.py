@@ -8,7 +8,7 @@ Created on Fri Feb 19 14:11:47 2021
 " Converts the txt files representing the production of CO to a netCDF file"
 
 import netCDF4 as nc
-
+import numpy as np
 #%%
 " 14C production in atmosphere "
 
