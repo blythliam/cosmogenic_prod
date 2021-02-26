@@ -156,7 +156,7 @@ M= 7.8
 Er = 0.938
 glob_tot = False
 spat_ocean = False
-jasmin = False
+jasmin = True
 
 #%%
 " Setting the global varibles for magnetic moment of earth and mass of proton"
@@ -241,7 +241,7 @@ no_of_months_done = int(len(glob.glob(root_dir + '/Output_Files/*.txt'))/110)
 phis = (phi_data[:,1] / 1000)[no_of_months_done:]
 Pcs = Gen_PC()
 start_year = time.time()
-CO_prod = np.zeros([10, 110, 144, 192])
+#CO_prod = np.zeros([10, 110, 144, 192])
 for year, phi in enumerate(phis):
     print('----------------------------------------------------')
     print('The code is now going to iterate through year: ', + (year + (827-len(phis))))
@@ -287,7 +287,7 @@ for year, phi in enumerate(phis):
         X = month_slice[ii,:,:]
         np.savetxt(prod_file_path + '/' + str(year + (827-len(phis))) + '_' + str(ii).zfill(3) + '.txt',X)          
 
-    CO_prod[year, :,  : , : ] = month_slice
+#    CO_prod[year, :,  : , : ] = month_slice
     end_year = time.time()
     
 print('---------------------------------------------------')
